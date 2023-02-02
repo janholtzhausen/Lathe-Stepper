@@ -17,6 +17,8 @@
 
 #define POT_PIN           34
 #define DEADZONE 20
+#define HOLDRATIO 0.2f
+#define STARTCURRENT 400
 
 
 TMC2130Stepper driver = TMC2130Stepper(EN_PIN, DIR_PIN, STEP_PIN, CS_PIN, MOSI, MISO, SCK);
@@ -35,8 +37,7 @@ void setup() {
     digitalWrite(CS_PIN, HIGH);
     
     driver.begin();             // Initiate pins and registeries
-    //driver.rms_current(200);    // Set stepper current to 600mA. The command is the same as command TMC2130.setCurrent(600, 0.11, 0.5);
-    driver.setCurrent(600, 0.11, 0.3);
+    driver.setCurrent(STARTCURRENT, R_SENSE, HOLDRATIO);
     driver.stealthChop(0);      // Enable extremely quiet stepping
     driver.microsteps(16);
     driver.high_speed_mode(0);
