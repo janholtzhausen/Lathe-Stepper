@@ -1,6 +1,5 @@
 #include <TMC2130Stepper.h>
 #include "FastAccelStepper.h"
-#include <SPI.h>
 
 #define EN_PIN           17 // Enable
 #define DIR_PIN          21 // Direction
